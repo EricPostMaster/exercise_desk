@@ -1,0 +1,36 @@
+{
+    "manifest_version": 3,
+    "name": "Desk Exercise Reminder",
+    "version": "1.0",
+    "description": "Encourages users to exercise at their desk.",
+    "permissions": [
+      "activeTab",
+      "storage",
+      "tabs",
+      "webNavigation",
+      "unlimitedStorage"
+    ],
+    "action": {
+      "default_icon": {
+        "16": "img/sleepy_stack_favicon.png",
+        "48": "img/sleepy_stack_favicon.png",
+        "128": "img/sleepy_stack_favicon.png"
+      },
+      "default_popup": "html/popup.html"
+    },
+    "background": {
+      "service_worker": "/js/background.js"
+    },
+    "icons": {
+      "16": "img/sleepy_stack_favicon.png",
+      "48": "img/sleepy_stack_favicon.png",
+      "128": "img/sleepy_stack_favicon.png"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["images/exercise.jpg", "tensorflow.js"],
+            "matches": ["<all_urls>"]
+          }
+    ]
+  }
+  
