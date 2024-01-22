@@ -51,6 +51,9 @@ function draw() {
   displayProgressBar();
   // Display repetition count above the canvas
   select('#rep_counter').html(`${repetitionCount}/${totalRepetitions}`);
+
+  // Check if exercise is complete
+  checkExerciseComplete();
 }
 
 // A function to draw ellipses over the detected keypoints
@@ -188,4 +191,14 @@ function displayProgressBar() {
   let progress = map(repetitionCount, 0, totalRepetitions, 0, width);
   fill('#06C258'); // Blue color for the progress bar
   rect(0, height - 10, progress, 10);
+}
+
+function checkExerciseComplete() {
+  // Check if repetition count equals the goal count
+  if (repetitionCount >= totalRepetitions) {
+    select('#exercise_msg').html('Exercise complete! Well done.');
+  }
+  // else {
+  //   select('#exercise_msg').html('Waiting for repetition...');
+  // }
 }
