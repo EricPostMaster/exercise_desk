@@ -10,11 +10,15 @@ Now you can get totally swole with the help of computer vision! 💪
 
 ## What it is
 
-
+DeskFit is a simple web application where the user sets a timer to be reminded to exercise, and when the timer completes, it opens the DeskFit website and prompts the user to do 20 repetitions of a simple exercise. In the current version, there is only one exercise, which is lifting one's hands in the air and bringing them back down. Once the user has completed the repetitions, they reset the timer and get back to work. It's a quick, easy way to build just a little bit more exercise into the day!
 
 ## How it works
 
+Under the hood, the app uses PoseNet for pose estimation. ChatGPT struggled to get PoseNet to work as a Chrome extension, so I started looking around online and found [a template](https://editor.p5js.org/kylemcdonald/sketches/H1OoUd9h7) using `ml5` and `p5`, which are libraries made specifically to simplify code so users can focus on creative work.
 
+In the current version, there is only one exercise, which is lifting one's hands in the air and bringing them back down. This exercise is tracked using the right shoulder and right elbow key points. The app assumes you start with your elbow below your shoulder (generally the case for normal human beings), then detects a partial rep if the y-coordinate of the elbow is above the shoulder, and finally counts a completed rep when the y-coordinate of the elbow drops below the shoulder again.
+
+The site can be loaded directly, but if you want to launch it based on a timer using the Chrome extension, you can just upload the whole directory to Chrome, and it will add the DeskFit popup to your extensions list.
 
 ## Origin story
 
@@ -22,7 +26,7 @@ I like building things; unfortunately, I don't know JavaScript (yet), so I like 
 
 I use ChatGPT3.5 (the free plan) because I like the idea that everybody has access to the resource in case they want to try something similar.
 
-Turns out, ChatGPT really struggled with making PoseNet work! It made the basic webpage and accessed the webcam without any issues, but I could not for the life of me get it to produce code that would draw the keypoints skeleton onto the canvas correctly. Fortunately, I found a cool project called [SquatCam](https://squatcam.vercel.app/) that does a lot of the same stuff I was hoping to do, and I was able to use it as a starting point. The creator of SquatCam was also unfamiliar with JavaScript, so we both used [a template](https://editor.p5js.org/kylemcdonald/sketches/H1OoUd9h7) from JavaScript libraries called `ml5` and `p5`, which are libraries made specifically to simplify code so users can focus on creative work.
+Turns out, ChatGPT really struggled with making PoseNet work! It made the basic webpage and accessed the webcam without any issues, but I could not for the life of me get it to produce code that would draw the keypoints skeleton onto the canvas correctly. Fortunately, I found a cool project called [SquatCam](https://squatcam.vercel.app/) that does a lot of the same stuff I was hoping to do, and I was able to use it as a starting point. The creator of SquatCam was also unfamiliar with JavaScript, so we both used [the template](https://editor.p5js.org/kylemcdonald/sketches/H1OoUd9h7) I mentioned above to get started.
 
 I also ran into a lot of difficulty trying to make this app as a Chrome Extension. Extensions seem to have tighter security policies than webpages, so I encountered issues with loading the libraries and running the model. As a workaround, I made the web app its own webpage, and the Chrome Extension is just a timer that opens a webpage (which just happens to be the app) when the timer runs out.
 
